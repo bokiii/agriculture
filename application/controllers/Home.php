@@ -8,7 +8,9 @@ class Home extends CI_Controller {
 	{
 		
 		$data['main_content'] = 'login';
-		$this->load->view('template/content', $data);
+		$this->load->view('template/content', $data);  
+
+		
 		
 	}
 }
