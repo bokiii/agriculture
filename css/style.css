@@ -1,0 +1,8 @@
+#loginView .alert-danger {  
+	display: none;
+}     
+
+.btn.btn-red { 
+	background-color: #D6514C;
+}   
+

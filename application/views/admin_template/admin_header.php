@@ -56,11 +56,11 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right main-nav">
-					<!--<li><a href="#intro">Home</a></li>
-					<li><a href="#services">Services</a></li>
+					<li><a class="btn btn-red" href="<?php echo base_url(); ?>index.php/process/logout">Logout</a></li>
+					<!--<li><a href="#services">Services</a></li>
 					<li><a href="#team">Team</a></li>
-					<li><a href="#pricing">Pricing</a></li>-->
-					<li><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Login</a></li>
+					<li><a href="#pricing">Pricing</a></li>
+					<li><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Login</a></li>-->
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
