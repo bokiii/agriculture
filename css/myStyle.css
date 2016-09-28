@@ -1,0 +1,51 @@
+#loginView .alert-danger {  
+	display: none;
+}     
+
+.btn.btn-red { 
+	background-color: #D6514C;
+}   
+ 
+
+.btn.btn-primary { 
+	background-color: #337ab7;  
+	width: 100%;   
+	height: 100%;  
+	font-size: 25px;  
+	border-radius: 20px;
+}     
+
+.btn.btn-primary:hover { 
+	font-size: 35px;  
+}     
+
+.btn {  
+	border: none;
+}   
+
+
+/* below is for the width of the modal in admin */
+
+.admin-modal .modal-dialog { 
+	max-width: 90%;
+}  
+
+.admin-modal .modal-dialog .modal-content { 
+	border-radius: 10px;  
+}  
+
+.admin-modal .modal-dialog .modal-content .btn {  
+	background: #337AB7;  
+	color: #FFF;
+}  
+
+.admin-modal .modal-dialog .modal-content .modal-body { 
+	min-height: 300px;
+}
+
+
+
+
+
+
+

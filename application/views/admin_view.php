@@ -21,7 +21,7 @@
 				
 				<div class="col-md-3">
 					<div class="intro-table">  
-						<button type="button" class="btn btn-primary">Users</button>
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#usersModal">Users</button>
 					</div>
 				</div> <!-- end col md 3 -->
 				
@@ -33,7 +33,23 @@
 
 			</div>
 		</div>
-	</section>  
+	</section>    
+
+	<div class="modal fade admin-modal" id="usersModal" tabindex="-1" role="dialog" aria-labelledby="Users">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">Users</h4>
+				</div>
+				<div class="modal-body">
+				...
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-sucess">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	
 	
