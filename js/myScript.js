@@ -63,4 +63,41 @@ var Login = (function() {
 
 Login.selectRole();
 Login.loginSubmit();  
-Login.whenModalClose();
+Login.whenModalClose();  
+
+var Crud = (function() { 
+
+	var selectEditDelete = function() { 
+		$(document).on("click", ".selectEditClick", function(){ 
+			$(this).parent().parent().siblings(".select-action").children(".btn").removeClass("btn-select-action btn-delete-update").addClass("btn-edit-update").text("Update");                                            
+			$(this).parent().parent().siblings(".hasValue").children("input").removeAttr("disabled");    
+			$(this).parent().parent().siblings(".priveleges").children('label').each(function(){ 
+				$(this).children('.privelege_check').removeAttr('disabled');
+			});
+
+		});  
+
+		$(document).on("click", ".selectDeleteClick", function(){ 
+			$(this).parent().parent().siblings(".select-action").children(".btn").removeClass("btn-select-action btn-edit-update").addClass("btn-delete-update").text("Delete");  
+			$(this).parent().parent().siblings(".hasValue").children("input").attr("disabled", "disabled");
+		});   
+
+		$(document).on("click", ".selectNoneClick", function(){ 
+			$(this).parent().parent().siblings(".select-action").children(".btn").removeClass("btn-delete-update btn-edit-update").addClass("btn-select-action").text("Select Action");  
+			$(this).parent().parent().siblings(".hasValue").children("input").attr("disabled", "disabled");
+			$(this).parent().parent().siblings(".priveleges").children('label').each(function(){ 
+				$(this).children('.privelege_check').attr({ 
+					"disabled": "disabled"
+				}).removeAttr("checked");
+			});
+		});
+	};  
+
+	return { 
+		selectEditDelete: 	selectEditDelete
+	}
+
+})()  
+
+
+Crud.selectEditDelete();

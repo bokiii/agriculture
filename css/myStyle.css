@@ -37,11 +37,62 @@
 .admin-modal .modal-dialog .modal-content .btn {  
 	background: #337AB7;  
 	color: #FFF;
-}  
+}    
+
+.admin-modal .modal-dialog .modal-content .btn.btn-danger { 
+	background: #c9302c; 
+}     
+
+.admin-modal .modal-dialog .modal-content .btn.btn-default { 
+	background: #d4d4d4;  
+	color: #000;
+}
 
 .admin-modal .modal-dialog .modal-content .modal-body { 
-	min-height: 300px;
+	min-height: 500px;
+}  
+
+.admin-modal .modal-dialog .modal-content table { 
+	height: auto;  
+	border-collapse: collapse;  
+	padding: 10px;  
+	overflow: initial;
+}       
+
+/* below is for the button deleta and update */       
+
+.admin-modal .modal-dialog .modal-content table .btn-select-action {    
+	padding: 5px 20px;  
+	background-color: #d4d4d4;  
+	font-size: 12px;
 }
+
+.admin-modal .modal-dialog .modal-content table .btn-delete-update { 
+	padding: 5px 20px;
+    font-size: 12px;
+    background-color: #c9302c;
+}   
+
+.admin-modal .modal-dialog .modal-content table .btn-edit-update { 
+	padding: 5px 20px;
+    font-size: 12px;
+    background-color: #337AB7;
+}  
+
+.admin-modal .modal-dialog .modal-content table td.hasValue input {  
+	padding: 0px 5px;  
+	border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
