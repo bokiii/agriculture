@@ -54,12 +54,11 @@
 
 .admin-modal .modal-dialog .modal-content table { 
 	height: auto;  
-	border-collapse: collapse;  
 	padding: 10px;  
 	overflow: initial;
 }       
 
-/* below is for the button deleta and update */       
+/* below is for the button delete and update */       
 
 .admin-modal .modal-dialog .modal-content table .btn-select-action {    
 	padding: 5px 20px;  
@@ -82,7 +81,17 @@
 .admin-modal .modal-dialog .modal-content table td.hasValue input {  
 	padding: 0px 5px;  
 	border-radius: 5px;
-}
+}          
+
+.admin-modal .modal-dialog .modal-content table td { 
+	padding-top: 20px;
+	padding-bottom: 20px;
+}  
+
+
+
+
+
 
 
 

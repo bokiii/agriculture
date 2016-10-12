@@ -46,11 +46,11 @@
 					<div class="table-responsive">
 					  <table class="table">
 					   	<tr>
-					   		<td>Action</td>
-					   		<td>Username</td>
-					   		<td>Password</td>  
-					   		<td>Priveleges</td>  
-					   		<td>Execute Action</td>  
+					   		<th>Action</th>
+					   		<th>Username</th>
+					   		<th>Password</th>  
+					   		<th>Priveleges</th>  
+					   		<th>Execute Action</th>  
 					   	</tr>  
 					   	<tr>  
 							<td>  
