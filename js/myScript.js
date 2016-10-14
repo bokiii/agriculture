@@ -1,4 +1,23 @@
 
+jQuery.fn.extend({
+	check: function() {
+		return this.each(function() { this.checked = true; });
+	},
+	uncheck: function() {
+		return this.each(function() { this.checked = false; });
+	}
+});
+
+var delay = (function(){
+	var timer = 0;
+	return function(callback, ms){
+		clearTimeout (timer);
+		timer = setTimeout(callback, ms);
+	};
+})();
+
+
+
 var Login = (function() { 
 
 	var selectRole = function() { 
@@ -65,39 +84,34 @@ Login.selectRole();
 Login.loginSubmit();  
 Login.whenModalClose();  
 
-var Crud = (function() { 
 
-	var selectEditDelete = function() { 
-		$(document).on("click", ".selectEditClick", function(){ 
-			$(this).parent().parent().siblings(".select-action").children(".btn").removeClass("btn-select-action btn-delete-update").addClass("btn-edit-update").text("Update");                                            
-			$(this).parent().parent().siblings(".hasValue").children("input").removeAttr("disabled");    
-			$(this).parent().parent().siblings(".priveleges").children('label').each(function(){ 
-				$(this).children('.privelege_check').removeAttr('disabled');
-			});
 
-		});  
+var crudModule = (function() { 
 
-		$(document).on("click", ".selectDeleteClick", function(){ 
-			$(this).parent().parent().siblings(".select-action").children(".btn").removeClass("btn-select-action btn-edit-update").addClass("btn-delete-update").text("Delete");  
-			$(this).parent().parent().siblings(".hasValue").children("input").attr("disabled", "disabled");
-		});   
+	var checkBoxesOperates = function() { 
 
-		$(document).on("click", ".selectNoneClick", function(){ 
-			$(this).parent().parent().siblings(".select-action").children(".btn").removeClass("btn-delete-update btn-edit-update").addClass("btn-select-action").text("Select Action");  
-			$(this).parent().parent().siblings(".hasValue").children("input").attr("disabled", "disabled");
-			$(this).parent().parent().siblings(".priveleges").children('label').each(function(){ 
-				$(this).children('.privelege_check').attr({ 
-					"disabled": "disabled"
-				}).removeAttr("checked");
-			});
+		$(document).on('click', ".main_check", function(){
+			if($(this).is(":checked")) {
+				$(".sub_check").check();
+			} else {
+				$(".sub_check").uncheck();
+			}
 		});
+		
+		$(document).on('click', ".sub_check", function(){
+			if($(".sub_check:checked").length === $(".sub_check").length) {
+				$(".main_check").check();
+			} else {
+				$(".main_check").uncheck();
+			}
+		});        
+
 	};  
 
 	return { 
-		selectEditDelete: 	selectEditDelete
+		checkBoxesOperates: 	checkBoxesOperates
 	}
 
-})()  
+})()   
 
-
-Crud.selectEditDelete();
+crudModule.checkBoxesOperates();

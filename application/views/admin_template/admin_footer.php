@@ -3,14 +3,7 @@
 			
 			<div class="row bottom-footer text-center-mobile">
 				<div class="col-sm-8">
-					<p>&copy; 2016 All Rights Reserved. Powered by <a href="#">Mastermind Tech.</a> exclusively for <a href="http://tympanus.net/codrops/">Riza</a></p>
-				</div>
-				<div class="col-sm-4 text-right text-center-mobile">
-					<ul class="social-footer">
-						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-					</ul>
+					<p>&copy; 2016 All Rights Reserved. Powered by <a href="#">Mastermind Tech.</a></p>
 				</div>
 			</div>
 		</div>

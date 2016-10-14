@@ -1,0 +1,41 @@
+nav.navbar-fixed-top { 
+	display: none;
+}  
+
+nav.navbar { 
+	background: rgba(28, 36, 65, 0.93);
+	border-radius: 0px;
+	top: 0px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#mainSection { 
+	/*background: rgba(28, 36, 65, 0.93);*/  
+	background: #fff;  
+	padding-top: 130px;    
+	padding-bottom: 50px;
+}  
+
+table td, table th { 
+	vertical-align: middle !important;
+}
+
+.page-header h1 { 
+	font-size: 30px;
+}  
+
+
+.btn-common { 
+	margin: 10px;  
+	padding: 15px;  
+	font-size: 14px;
+}
+    
+.btn-add { 
+	background-color: #337AB7; 
+}  
+
+.btn-delete { 
+	background-color: #D9534F; 
+}

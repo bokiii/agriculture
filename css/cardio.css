@@ -114,8 +114,7 @@ header {
 	width: 100%;
 	color: white;
 	background: rgba(28, 36, 65, 0.93);
-	background: url('../img/header.jpg');
-	background-size: cover;
+	
 }
 
 header .table {
@@ -654,10 +653,8 @@ section {
 /* Footer */
 
 footer {
-	padding: 140px 0 40px;
-	background: url('../img/footer.jpg');
-	-webkit-background-size: cover;
-	background-size: cover;
+	padding: 0px;
+	background-color: #2b2b40;
 }
 
 footer .trial-button {
@@ -700,7 +697,8 @@ footer .opening-hours {
 }
 
 footer .bottom-footer {
-	margin-top: 150px;
+	margin-top: 30px;  
+	margin-bottom: 20px;
 }
 
 footer .social-footer {
@@ -783,7 +781,7 @@ footer .social-footer li:hover a {
 	position: relative;
 	padding: 45px 30px;
 	text-align: center;
-	background: url('../img/popup.jpg');
+	background-color: #32A6EF;
 	box-shadow: none;
 	border-radius: 2px;
 }

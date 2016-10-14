@@ -12,9 +12,11 @@ class Admin extends CI_Controller {
 
 	}
 
-	public function index() {
+	public function index() {   
+
+
 		$data['main_content'] = 'admin_view';
-		$this->load->view('admin_template/admin_content', $data);  
+		$this->load->view('admin_template/admin_content', $data);        
 	}      
 
 
