@@ -17,7 +17,6 @@ var delay = (function(){
 })();
 
 
-
 var Login = (function() { 
 
 	var selectRole = function() { 
@@ -84,9 +83,7 @@ Login.selectRole();
 Login.loginSubmit();  
 Login.whenModalClose();  
 
-
-
-var crudModule = (function() { 
+var CrudModule = (function() { 
 
 	var checkBoxesOperates = function() { 
 
@@ -114,4 +111,54 @@ var crudModule = (function() {
 
 })()   
 
-crudModule.checkBoxesOperates();
+CrudModule.checkBoxesOperates();    
+
+
+var UserModule = (function() { 
+
+	var addUserFormSubmit = function() { 
+
+		$("#addUserForm").ajaxForm({
+			dataType: 'json',
+			forceSync: true,
+			beforeSubmit: loading,
+			success: success_status
+		});       
+
+		function loading() { 
+			return true;
+		}    
+
+		function success_status(data) { 
+			
+			console.log(data);
+
+			if(data.status) { 
+				$(".confirmation_message").fadeIn("fast", function(){ 
+					$(this).removeClass("bg-danger").addClass("bg-success").text(data.message);
+				});
+			} else { 
+				$(".confirmation_message").fadeIn("fast", function(){ 
+					$(this).removeClass("bg-success").addClass("bg-danger").text(data.message);
+				});
+			}   
+
+			delay(function(){ 
+				
+				$(".confirmation_message").fadeOut("slow");
+
+			}, 5000);
+		}  
+
+
+	};   
+
+	return { 
+		addUserFormSubmit: 	addUserFormSubmit
+	}
+
+})()    
+
+UserModule.addUserFormSubmit();
+
+

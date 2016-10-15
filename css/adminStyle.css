@@ -27,7 +27,7 @@ table td, table th {
 
 
 .btn-common { 
-	margin: 10px;  
+	margin: 10px !important;  
 	padding: 15px;  
 	font-size: 14px;
 }
@@ -39,3 +39,20 @@ table td, table th {
 .btn-delete { 
 	background-color: #D9534F; 
 }
+
+.modal-title {  
+	display: inline-block;
+}   
+
+input[type="checkbox"] { 
+	margin-top: 0px !important;   
+	padding-right: 10px !important;
+}  
+
+.confirmation_message { 
+	padding: 10px; 
+	font-size: 14px; 
+	text-align: center;  
+	display: none;  
+	margin-bottom: 20px;
+}  

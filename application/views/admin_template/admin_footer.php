@@ -21,7 +21,7 @@
 	<script src="<?php echo base_url(); ?>js/wow.min.js"></script>
 	<script src="<?php echo base_url(); ?>js/typewriter.js"></script>
 	<script src="<?php echo base_url(); ?>js/jquery.onepagenav.js"></script>
-	<script src="<?php echo base_url(); ?>js/main.js"></script>  
+	<script src="<?php echo base_url(); ?>js/adminMain.js"></script>  
 	<!-- below are my scripts -->             
 	<script src="<?php echo base_url(); ?>js/jquery.form.js"></script> 
 	<script src="<?php echo base_url(); ?>js/myScript.js"></script>   

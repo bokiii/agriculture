@@ -32,7 +32,7 @@
 	<!-- Elegant Icons -->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>fonts/eleganticons/et-icons.css">
 	<!-- Main style -->
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/cardio.css">    
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/adminCardio.css">    
 	<!-- My style -->   
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/myStyle.css"> 
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/adminStyle.css"> 
@@ -57,7 +57,7 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right main-nav">  
-					<li><a href="#">Users</a></li>  
+					<li><a href="<?php echo base_url(); ?>index.php/users">Users</a></li>  
 					<li><a href="#">Data Inventory</a></li>
 					<li><a class="btn btn-red" href="<?php echo base_url(); ?>index.php/process/logout">Logout</a></li>
 					<!--<li><a href="#team">Team</a></li>
