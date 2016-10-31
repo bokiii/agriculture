@@ -58,7 +58,7 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right main-nav">  
 					<li><a href="<?php echo base_url(); ?>index.php/users">Users</a></li>  
-					<li><a href="#">Data Inventory</a></li>
+					<li><a href="<?php echo base_url(); ?>index.php/data_inventory">Data Inventory</a></li>
 					<li><a class="btn btn-red" href="<?php echo base_url(); ?>index.php/process/logout">Logout</a></li>
 					<!--<li><a href="#team">Team</a></li>
 					<li><a href="#pricing">Pricing</a></li>

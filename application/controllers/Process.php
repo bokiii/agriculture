@@ -23,7 +23,7 @@ class Process extends CI_Controller {
 		if($check_user != null) { 
 			
 			$account_data = $check_user[0];
-			$this->session->set_userdata($account_data);        
+			$this->session->set_userdata($account_data);            
 			$data['status'] = true;  
 			$data['redirect'] = base_url() . "index.php/admin";
 

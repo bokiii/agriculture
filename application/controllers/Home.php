@@ -17,7 +17,11 @@ class Home extends CI_Controller {
 	public function index() {
 		$data['main_content'] = 'login';
 		$this->load->view('template/content', $data);      
-	}       
+	}          
+
+	public function generate() {  
+		echo md5("mastermind");
+	}
 
 
 

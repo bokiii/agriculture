@@ -11,13 +11,12 @@ class Users extends CI_Controller {
 		if($this->session->userdata('username') == null) { 
 			redirect('home');
 		}     
-
-	}
+	} // end 
 
 	public function index() {
 		$data['main_content'] = 'user_view';
-		$this->load->view('admin_template/admin_content', $data);          
-	}          
+		$this->load->view('admin_template/admin_content', $data);     
+	} // end           
 
 	public function add_user() { 
 
@@ -75,9 +74,95 @@ class Users extends CI_Controller {
 		}    
 
 		echo json_encode($data);   
+	}  // end add user     
+
+	public function get_users() { 
+		$data = array();
+
+		$get_users = $this->user_model->get_users();  
+		$data['users'] = $get_users;   
+
+		echo json_encode($data);
+	}  // end  
+
+	public function get_user_by_id() { 
+		$data = array();
+
+		$id = $this->input->get('id');  
+		$get_user_by_id = $this->user_model->get_user_by_id($id);
+
+		$data['user'] = $get_user_by_id; 
+
+		echo json_encode($data);
+	} // end 
+
+	public function delete_user() {   
+		$data = array();    
+		$ids = $this->input->post('user_id');
+
+		$delete_users = $this->user_model->delete_users($ids);   
+
+		if($delete_users) { 
+			$data['status'] = true;
+		} else { 
+			$data['status'] = false;
+		}  
+
+		echo json_encode($data);
+	} // end   
+
+	public function update_user() { 
+
+		$data = array();
+
+		$userData = array(  
+			"username" => $this->input->post('username')
+		);   
+
+		// below for password
+		if($this->input->post('password') == "") { 
+			$userData["password"] = "";
+		} else { 
+			$userData["password"] = trim(md5($this->input->post("password")));
+		}   
+
+		// below for can add 
+		if($this->input->post("can_add")) { 
+			$userData["can_add"] = 1;
+		} else { 
+			$userData["can_add"] = 0;
+		}     
+
+		// below for can edit
+		if($this->input->post("can_edit")) { 
+			$userData["can_edit"] = 1;
+		} else { 
+			$userData["can_edit"] = 0;
+		}    
+
+		// below for can delete  
+		if($this->input->post("can_delete")) { 
+			$userData["can_delete"] = 1;
+		} else { 
+			$userData["can_delete"] = 0;
+		}        
+
+		$userData['id'] = $this->input->post('user_update_id');
+
+		$update_user_by_id = $this->user_model->update_user_by_id($userData);    
+
+		if($update_user_by_id) { 
+			$data['status'] = true;  
+			$data['message'] = "Updated";
+		} else { 
+			$data['status'] = false;  
+			$data['message'] = "Username Already Exists";
+		}  
+
+		echo json_encode($data);    
 
 
-	}  // end add user 
+	} // end 
 
 
 

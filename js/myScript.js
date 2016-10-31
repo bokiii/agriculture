@@ -6,7 +6,7 @@ jQuery.fn.extend({
 	uncheck: function() {
 		return this.each(function() { this.checked = false; });
 	}
-});
+}); // end 
 
 var delay = (function(){
 	var timer = 0;
@@ -14,8 +14,7 @@ var delay = (function(){
 		clearTimeout (timer);
 		timer = setTimeout(callback, ms);
 	};
-})();
-
+})(); // end 
 
 var Login = (function() { 
 
@@ -76,8 +75,7 @@ var Login = (function() {
 		selectRole:  	selectRole, 
 		whenModalClose: whenModalClose 
 	}
-
-})()   
+})() // end    
 
 Login.selectRole();
 Login.loginSubmit();  
@@ -108,11 +106,9 @@ var CrudModule = (function() {
 	return { 
 		checkBoxesOperates: 	checkBoxesOperates
 	}
-
-})()   
+})() // end    
 
 CrudModule.checkBoxesOperates();    
-
 
 var UserModule = (function() { 
 
@@ -131,7 +127,6 @@ var UserModule = (function() {
 
 		function success_status(data) { 
 			
-			console.log(data);
 
 			if(data.status) { 
 				$(".confirmation_message").fadeIn("fast", function(){ 
@@ -141,24 +136,162 @@ var UserModule = (function() {
 				$(".confirmation_message").fadeIn("fast", function(){ 
 					$(this).removeClass("bg-success").addClass("bg-danger").text(data.message);
 				});
-			}   
+			}      
+
+			$("#addUserForm").trigger("reset");
 
 			delay(function(){ 
 				
-				$(".confirmation_message").fadeOut("slow");
+				$(".confirmation_message").fadeOut("slow");  
 
-			}, 5000);
+			}, 5000);  
+
+			angular.element($("#mainSection")).scope().getUsers();  
+		}  
+	}; // end     
+
+	var deleteUserFormSubmit = function() { 
+
+		$("#userDeleteForm").ajaxForm({
+			dataType: 'json',
+			forceSync: true,
+			beforeSubmit: loading,
+			success: success_status
+		});       
+
+		function loading() { 
+			return true;
+		}    
+
+		function success_status(data) { 
+		
+			angular.element($("#mainSection")).scope().getUsers();    
+
+		}  
+	}; // end  
+
+	var updateUserFormSubmit = function() { 
+		$("#updateUserForm").ajaxForm({
+			dataType: 'json',
+			forceSync: true,
+			beforeSubmit: loading,
+			success: success_status
+		});       
+
+		function loading() { 
+			return true;
+		}    
+
+		function success_status(data) { 
+			$("#editModal").modal('hide');
+			angular.element($("#mainSection")).scope().getUsers();      
+			alert(data.message);    
 		}  
 
-
-	};   
+	}; // end 
 
 	return { 
-		addUserFormSubmit: 	addUserFormSubmit
-	}
+		addUserFormSubmit: 		addUserFormSubmit, 
+		deleteUserFormSubmit: 	deleteUserFormSubmit, 
+		updateUserFormSubmit: 	updateUserFormSubmit
+	}      
+})() // end     
 
-})()    
+UserModule.addUserFormSubmit();  
+UserModule.deleteUserFormSubmit();  
+UserModule.updateUserFormSubmit();   
 
-UserModule.addUserFormSubmit();
+var DataInventoryModule = (function() { 
+
+	var navigate = function() { 
+		
+		$("#firstNext").on("click", function(e){ 
+			e.preventDefault();  
+			/*if(angular.element($("#mainSection")).scope().checkFirstData()) { 
+				
+				$("#firstData").slideUp("slow", function(){ 
+					$("#secondData").slideDown("fast");
+				});  
+
+			} else { 
+				var firstDataErrorMessage = angular.element($("#mainSection")).scope().firstDataErrorMessage.join(", ");   
+				
+				$("#firstData .confirmation_message").text("Please enter " + firstDataErrorMessage).fadeIn();
+			} */    
+
+			$("#firstData").slideUp("slow", function(){ 
+				$("#secondData").slideDown("fast", function(){ 
+					$("#addDataSubmitButtonContainer").show("fast");
+				});
+			});    			
+		}); // end        
+
+		$("#firstPrev").on("click", function(e){   
+			$("#addDataSubmitButtonContainer").hide("fast");
+			$("#secondData").slideUp("slow", function(){ 
+				$("#firstData").slideDown("fast");
+			});  
+		}); // end 
+
+		// below for number of assets   
+		var currentNumOfAssets = 1;    
+		$("#num_assets").on("click", function(){ 
+			var numOfAssets = $(this).val();      
+			var assetMainContainer = $(".assetContainer").html();   
+			if(numOfAssets > 1) {   
+
+				if(currentNumOfAssets < numOfAssets) { 
+					currentNumOfAssets = numOfAssets;   
+					var assetToAppend = '<div class="row assetContainer">' + assetMainContainer + '</div>'; 
+					$("#assetMainContainer").append(assetToAppend);
+				} else if(currentNumOfAssets > numOfAssets) {     
+					currentNumOfAssets = numOfAssets;   
+					$(".assetContainer:last-child").remove();
+				}
+				
+			} else if(numOfAssets == 1) {   
+				currentNumOfAssets = numOfAssets;  
+				var assetToAppend = '<div class="row assetContainer">' + assetMainContainer + '</div>'; 
+				$("#assetMainContainer").html(assetToAppend);
+			}  
+		}); // end 
+
+		// below event when add data modal is closed 
+		/*$('#addDataModal').on('hidden.bs.modal', function (e) {
+			angular.element($("#mainSection")).scope().first_name = "";  
+			angular.element($("#mainSection")).scope().middle_name = "";  
+			angular.element($("#mainSection")).scope().last_name = "";
+		})*/    
+	}; // end     
+
+	var addDataFormSubmit = function() { 
+
+		$("#addDataForm").ajaxForm({
+			dataType: 'json',
+			forceSync: true,
+			beforeSubmit: loading,
+			success: success_status
+		});     
+
+		function loading() {   
+			console.log("Trying to submit...");
+			return false;
+		}      
+
+		function success_status(data) { 
+			console.log(data);
+		}
+
+	};    
+
+	return { 
+		navigate: 			navigate, 
+		addDataFormSubmit:	addDataFormSubmit
+	}   
+
+})() // end   
+
+DataInventoryModule.navigate();  
+DataInventoryModule.addDataFormSubmit();
 
 
