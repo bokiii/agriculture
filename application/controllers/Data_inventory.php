@@ -69,14 +69,29 @@ class Data_Inventory extends CI_Controller {
 		} */ 
 
 		echo json_encode($get_data);
-   	} //   
+   	} // end    
 
    	public function get_data_by_id() { 
 
-   		$this->useful->debug($this->input->get());
+   		$id = $this->input->get("id");    
+   		$get_data_by_id = $this->data_inventory_model->get_data_by_id($id);    
+   		if($get_data_by_id != null) { 
+   			$data['main_content'] = 'data_individual_inventory_view';
+			$this->load->view('admin_template/admin_content', $data);  
+   		}
+   	} // end    
 
-   	}
+   	public function get_data_by_id_angular() { 
 
+   		$id = $this->input->get("id");   
+
+   		$get_data_by_id = $this->data_inventory_model->get_data_by_id($id);     
+
+		$get_data_assets_by_data_personal_detail_id = $this->data_inventory_model->get_data_assets_by_data_personal_detail_id($get_data_by_id[0]["id"]);              	
+		$get_data_by_id[0]["data_assets"] = $get_data_assets_by_data_personal_detail_id;
+	
+   		echo json_encode($get_data_by_id);   
+   	} // end 
 
 	public function delete_data() { 
 	
@@ -93,6 +108,39 @@ class Data_Inventory extends CI_Controller {
 		}   
 
 		echo json_encode($data);
+	} // end    
+
+	public function add_data_asset() { 
+		$data = array();
+		$asset_data =$this->input->post();        
+
+		$add_data_asset = $this->data_inventory_model->add_data_asset($asset_data);   
+		if($add_data_asset) { 
+			$data['status'] = true;  
+			$data['message'] = "Added";
+		} else { 
+			$data['status'] = false;  
+			$data['message'] = "Failed";
+		}   
+
+		echo json_encode($data);
+	} // end    
+
+	public function delete_data_asset() { 
+		
+		$data = array();
+
+		$ids = $this->input->post("asset_id");    
+		$delete_data_asset = $this->data_inventory_model->delete_data_asset($ids);   
+		
+		if($delete_data_asset) { 
+			$data["status"] = true;
+		} else { 
+			$data["status"] = false;
+		}    
+
+		echo json_encode($data);
+
 	}
 
 

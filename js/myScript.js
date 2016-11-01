@@ -127,7 +127,6 @@ var UserModule = (function() {
 
 		function success_status(data) { 
 			
-
 			if(data.status) { 
 				$(".confirmation_message").fadeIn("fast", function(){ 
 					$(this).removeClass("bg-danger").addClass("bg-success").text(data.message);
@@ -358,6 +357,78 @@ var DataInventoryModule = (function() {
 
 DataInventoryModule.navigate();  
 DataInventoryModule.addDataFormSubmit();  
-DataInventoryModule.deleteDataFormSubmit();
+DataInventoryModule.deleteDataFormSubmit();   
+
+var individualDataInventoryModule = (function() { 
+
+	var addDataAssetFormSubmit = function() { 
+		$("#addDataAssetForm").ajaxForm({
+			dataType: 'json',
+			forceSync: true,
+			beforeSubmit: loading,
+			success: success_status
+		});    
+
+		function loading() { 
+			return true;
+		}  
+
+		function success_status(data) { 
+			
+			if(data.status) { 
+				$(".confirmation_message").fadeIn("fast", function(){ 
+					$(this).removeClass("bg-danger").addClass("bg-success").text(data.message);
+				});
+			} else { 
+				$(".confirmation_message").fadeIn("fast", function(){ 
+					$(this).removeClass("bg-success").addClass("bg-danger").text(data.message);
+				});
+			}      
+
+			$("#addDataAssetForm").trigger("reset");
+
+			delay(function(){ 
+				
+				$(".confirmation_message").fadeOut("slow");  
+
+			}, 5000);  
+
+			angular.element($("#mainSection")).scope().getIndividualData();  
+		} // end success function   
 
 
+	}; // end      
+
+	var dataAssetDeleteFormSubmit = function() { 
+		$("#dataAssetDeleteForm").ajaxForm({
+			dataType: 'json',
+			forceSync: true,
+			beforeSubmit: loading,
+			success: success_status
+		});       
+
+		function loading() { 
+			return true;
+		}  
+
+		function success_status(data) {    
+			if(data.status) { 
+				alert("deleted");
+			} else { 
+				alert("failed");
+			}      
+
+			angular.element($("#mainSection")).scope().getIndividualData();  
+		}
+
+	}; // end   
+
+	return { 
+		addDataAssetFormSubmit: 	addDataAssetFormSubmit, 
+		dataAssetDeleteFormSubmit: 	dataAssetDeleteFormSubmit 	
+	}
+
+})() // end 
+
+individualDataInventoryModule.addDataAssetFormSubmit();  
+individualDataInventoryModule.dataAssetDeleteFormSubmit();

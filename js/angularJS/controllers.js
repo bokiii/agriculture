@@ -159,7 +159,6 @@ controllers.controller('dataInventory', function($scope, $http, $sce){
 		}
 	}; // end           
 
-
 	$scope.datas;
 	var getDatasUrl = fullUrl + "/get_data";  
 	$scope.getDatas = function() {    
@@ -169,9 +168,22 @@ controllers.controller('dataInventory', function($scope, $http, $sce){
 	};       
 
 	$scope.getDatas();	
+}); // end      
 
+controllers.controller('individualDataInventory', function($scope, $http, $sce){  
+	var protocol = window.location.protocol + "//" + window.location.host;
+	var fullUrl = protocol + window.location.pathname + window.location.search;      
 
+	var getIndividualDataUrl = fullUrl.replace("get_data_by_id", "get_data_by_id_angular");      
+	$scope.data;
+	$scope.getIndividualData = function() { 
+		$http.get(getIndividualDataUrl).success(function(data){ 
+			$scope.data = data[0];  
+		});  
+	}    
+	$scope.getIndividualData();
 }); // end    
+
 
 
 
