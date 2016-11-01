@@ -207,23 +207,22 @@ var DataInventoryModule = (function() {
 		
 		$("#firstNext").on("click", function(e){ 
 			e.preventDefault();  
-			/*if(angular.element($("#mainSection")).scope().checkFirstData()) { 
+			if(angular.element($("#mainSection")).scope().checkFirstData()) { 
 				
 				$("#firstData").slideUp("slow", function(){ 
 					$("#secondData").slideDown("fast");
-				});  
+				});     
+				$("#addDataSubmitButtonContainer").show("fast");
 
 			} else { 
 				var firstDataErrorMessage = angular.element($("#mainSection")).scope().firstDataErrorMessage.join(", ");   
 				
-				$("#firstData .confirmation_message").text("Please enter " + firstDataErrorMessage).fadeIn();
-			} */    
+				$("#firstData .confirmation_message").text("Please enter " + firstDataErrorMessage).fadeIn();  
+				delay(function(){ 
+					$("#firstData .confirmation_message").fadeOut("slow");  
+				}, 5000);    
 
-			$("#firstData").slideUp("slow", function(){ 
-				$("#secondData").slideDown("fast", function(){ 
-					$("#addDataSubmitButtonContainer").show("fast");
-				});
-			});    			
+			}			
 		}); // end        
 
 		$("#firstPrev").on("click", function(e){   
@@ -254,14 +253,22 @@ var DataInventoryModule = (function() {
 				var assetToAppend = '<div class="row assetContainer">' + assetMainContainer + '</div>'; 
 				$("#assetMainContainer").html(assetToAppend);
 			}  
-		}); // end 
+		}); // end    
 
-		// below event when add data modal is closed 
-		/*$('#addDataModal').on('hidden.bs.modal', function (e) {
-			angular.element($("#mainSection")).scope().first_name = "";  
-			angular.element($("#mainSection")).scope().middle_name = "";  
-			angular.element($("#mainSection")).scope().last_name = "";
-		})*/    
+
+		// below if add data mdal is closed 
+		$('#addDataModal').on('hide.bs.modal', function (e) {
+			$("#addDataSubmitButtonContainer").hide("fast");
+			$("#secondData").slideUp("slow", function(){ 
+				$("#firstData").slideDown("fast");
+			});     
+			var assetMainContainer = $(".assetContainer").html();     
+			var assetToAppend = '<div class="row assetContainer">' + assetMainContainer + '</div>'; 
+			$("#assetMainContainer").html(assetToAppend);
+			$("#addDataForm").trigger("reset");   
+		});
+
+		
 	}; // end     
 
 	var addDataFormSubmit = function() { 
@@ -274,21 +281,57 @@ var DataInventoryModule = (function() {
 		});     
 
 		function loading() {   
-			console.log("Trying to submit...");
-			return false;
-		}      
+			
+			var valueToReturn;
+
+			var numOfAssetBlank = 0;  
+			var numOfAssetDescriptionBlank = 0;	  
+
+			var errorMessage;
+			$(".assetContainer").each(function(){   
+
+				var assetValue = $(this).find(".asset").val();    
+				
+				if(assetValue == "") { 
+					numOfAssetBlank++;
+				}  
+
+				var assetDescriptionValue = $(this).find(".asset_description").val();        
+
+				if(assetDescriptionValue == "") { 
+					numOfAssetDescriptionBlank++;
+				}  
+
+				if(numOfAssetBlank > 0 || numOfAssetDescriptionBlank > 0) { 
+					errorMessage = "All fields in Asset and Asset Description must not be empty";  
+					$("#secondData .confirmation_message").text(errorMessage).fadeIn();      
+					
+					delay(function(){ 
+						$("#secondData .confirmation_message").fadeOut("slow");  
+					}, 5000);      
+
+					valueToReturn = false;    
+				} else {   
+					valueToReturn = true;   
+				}     
+			});  
+
+			return valueToReturn;
+
+
+		} // end loading       
 
 		function success_status(data) { 
-			console.log(data);
+			alert(data.message);  
+			$('#addDataModal').modal('hide');
 		}
 
-	};    
+	}; // end add data form submit   
 
 	return { 
 		navigate: 			navigate, 
 		addDataFormSubmit:	addDataFormSubmit
 	}   
-
 })() // end   
 
 DataInventoryModule.navigate();  

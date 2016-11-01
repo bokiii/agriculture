@@ -82,14 +82,12 @@ controllers.controller('users', function($scope, $http, $sce){
 
 		});    
 	}; // end 
-
 }); // end         
 
 controllers.controller('dataInventory', function($scope, $http, $sce){
 	
 	var protocol = window.location.protocol + "//" + window.location.host;
 	var fullUrl = protocol + window.location.pathname + window.location.search;   
-
 
 	$scope.first_name = ""; 
 	$scope.middle_name = "";  
@@ -98,12 +96,14 @@ controllers.controller('dataInventory', function($scope, $http, $sce){
 	$scope.civil_status = "";  
 	$scope.gender = "";
 
-	$scope.firstDataErrorMessage;
-	
+	$scope.firstDataErrorMessage;  
+
+	$scope.asset = [];   
+	$scope.asset_description = [];
+
+
 	$scope.checkFirstData = function() { 
-		
 		var error = [];  
-		
 		switch($scope.first_name) { 
 			case "":    
 				error.push("First Name");
@@ -112,7 +112,6 @@ controllers.controller('dataInventory', function($scope, $http, $sce){
 				error.push("First Name");
 				break;     
 		}   
-
 		switch($scope.middle_name) {   
 			case "":    
 				error.push("Middle Name");
@@ -121,7 +120,6 @@ controllers.controller('dataInventory', function($scope, $http, $sce){
 				error.push("Middle Name");
 				break;  
 		}    
-
 		switch($scope.last_name) {   
 			case "":    
 				error.push("Last Name");
@@ -130,7 +128,6 @@ controllers.controller('dataInventory', function($scope, $http, $sce){
 				error.push("Last Name");
 				break;
 		}    
-
 		switch($scope.address) {   
 			case "":    
 				error.push("Address");
@@ -139,7 +136,6 @@ controllers.controller('dataInventory', function($scope, $http, $sce){
 				error.push("Address");
 				break;
 		}    
-
 		switch($scope.civil_status) {   
 			case "":    
 				error.push("Civil Status");
@@ -148,7 +144,6 @@ controllers.controller('dataInventory', function($scope, $http, $sce){
 				error.push("Civil Status");
 				break;
 		}     
-
 		switch($scope.gender) {   
 			case "":    
 				error.push("Gender");
@@ -157,17 +152,16 @@ controllers.controller('dataInventory', function($scope, $http, $sce){
 				error.push("Gender");
 				break;
 		}    
-
-
 		$scope.firstDataErrorMessage = error;    
-
 		if($scope.firstDataErrorMessage.length > 0) { 
 			return false;
 		}  else { 
 			return true;
 		}
+	}; // end           
 
-	};  
+	
+
 
 	
 }); // end    

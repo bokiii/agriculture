@@ -8,7 +8,7 @@
 				  <h1>Users</h1>
 				</div>
 
-				<form id="userDeleteForm" method="post" action="<?php echo base_url(); ?>index.php/users/delete_user">
+				<form id="dataDeleteForm" method="post" action="<?php echo base_url(); ?>index.php/users/delete_user">
 					<div class="table-responsive">
 					  	<table class="table">
 						  	<thead>   
@@ -135,7 +135,8 @@
 						<a id="firstNext" class="btn btn-add btn-common topBottomNavigate">Next</a>
 			      	</div> <!-- end first data -->       
 
-			      	<div id="secondData" class="modal-body">        
+			      	<div id="secondData" class="modal-body">       
+			      		<p class="bg-danger confirmation_message">Failed</p>      
 						
 						<a id="firstPrev" class="btn btn-add btn-common topBottomNavigate">Previous</a>
 
@@ -157,13 +158,13 @@
 									<div class="col-md-4">  
 										<div class="form-group">
 											<label for="asset">Asset</label>
-											<input type="text" class="form-control" name="asset[]" class="asset">
+											<input type="text" class="form-control asset" name="asset[]">
 										</div>   
 									</div>  
 									<div class="col-md-8">  
 										<div class="form-group">
 											<label for="asset_description">Asset Description</label>
-											<input type="text" class="form-control" name="asset_description[]" class="asset_description">
+											<input type="text" class="form-control asset_description" name="asset_description[]">
 										</div>   
 									</div>
 								</div>      
