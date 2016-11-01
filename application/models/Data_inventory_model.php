@@ -46,7 +46,13 @@ class Data_inventory_model extends CI_Model {
 		$this->db->where("data_personal_detail_id", $id);   
 		$query = $this->db->get("data_assets");   
 		return $query->result_array();
-	} // end     
+	} // end        
+
+	function get_data_asset_by_id($id) { 
+		$this->db->where("id", $id);   
+		$query = $this->db->get("data_assets");   
+		return $query->result_array();
+	} // end 
 
 	function delete_data_by_ids($ids) { 
 		$this->db->where_in('id', $ids);  
@@ -74,6 +80,19 @@ class Data_inventory_model extends CI_Model {
 			return true;
 		} else { 
 			return false; 
+		}
+	} // end    
+
+	function update_data_asset($data) { 
+		$this->db->set("asset", $data["asset"]);  
+		$this->db->set("asset_description", $data["asset_description"]);    
+		$this->db->where("id", $data["asset_id"]);   
+		$query = $this->db->update("data_assets");      
+		
+		if($query) { 
+			return true;
+		} else { 
+			return false;
 		}
 
 	} // end 

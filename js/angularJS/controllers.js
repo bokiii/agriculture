@@ -181,7 +181,22 @@ controllers.controller('individualDataInventory', function($scope, $http, $sce){
 			$scope.data = data[0];  
 		});  
 	}    
-	$scope.getIndividualData();
+	$scope.getIndividualData();      
+
+	
+	$scope.data_asset;
+	$scope.getAssetById = function(id) { 
+		
+		var getAssetByIdTempUrl = protocol + window.location.pathname;    
+		var getAssetByIdUrl = getAssetByIdTempUrl.replace("get_data_by_id", "get_data_asset_by_id") + "?id=" + id;        
+
+		$http.get(getAssetByIdUrl).success(function(data){ 
+			$scope.data_asset = data[0];  
+			console.log($scope.data_asset);
+		});
+
+	};  
+
 }); // end    
 
 

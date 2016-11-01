@@ -140,8 +140,32 @@ class Data_Inventory extends CI_Controller {
 		}    
 
 		echo json_encode($data);
+	} // end         
 
-	}
+	public function get_data_asset_by_id() { 
+		$id = $this->input->get("id");      
+		$get_data_asset_by_id = $this->data_inventory_model->get_data_asset_by_id($id);     
+		
+		echo json_encode($get_data_asset_by_id);
+	} // end    
+
+	public function update_data_asset() {   
+
+		$data = array();
+
+		$update_data = $this->input->post();  
+
+		$update_data_asset = $this->data_inventory_model->update_data_asset($update_data);   
+
+		if($update_data_asset) { 
+			$data["status"] = true;
+		} else { 
+			$data["status"] = false;
+		}   
+
+		echo json_encode($data);
+
+	} // end 
 
 
 

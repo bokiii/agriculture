@@ -395,8 +395,6 @@ var individualDataInventoryModule = (function() {
 
 			angular.element($("#mainSection")).scope().getIndividualData();  
 		} // end success function   
-
-
 	}; // end      
 
 	var dataAssetDeleteFormSubmit = function() { 
@@ -420,15 +418,42 @@ var individualDataInventoryModule = (function() {
 
 			angular.element($("#mainSection")).scope().getIndividualData();  
 		}
+	}; // end     
 
-	}; // end   
+	var dataAssetUpdateFormSubmit = function() { 
+
+		$("#dataAssetUpdateForm").ajaxForm({
+			dataType: 'json',
+			forceSync: true,
+			beforeSubmit: loading,
+			success: success_status
+		});       
+
+		function loading() { 
+			return true;
+		}  
+
+		function success_status(data) {    
+			if(data.status) { 
+				$("#editModal").modal('hide');  
+				alert("Updated");
+			} else { 
+				alert("Failed");
+			}        
+
+			angular.element($("#mainSection")).scope().getIndividualData();  
+		}
+
+	};
 
 	return { 
 		addDataAssetFormSubmit: 	addDataAssetFormSubmit, 
-		dataAssetDeleteFormSubmit: 	dataAssetDeleteFormSubmit 	
+		dataAssetDeleteFormSubmit: 	dataAssetDeleteFormSubmit, 
+		dataAssetUpdateFormSubmit: 	dataAssetUpdateFormSubmit 	
 	}
 
 })() // end 
 
 individualDataInventoryModule.addDataAssetFormSubmit();  
-individualDataInventoryModule.dataAssetDeleteFormSubmit();
+individualDataInventoryModule.dataAssetDeleteFormSubmit();  
+individualDataInventoryModule.dataAssetUpdateFormSubmit();
