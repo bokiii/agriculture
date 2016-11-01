@@ -5,35 +5,31 @@
 			<div class="col-md-12">   
 				
 				<div class="page-header">
-				  <h1>Users</h1>
+				  <h1>Farmers Inventory</h1>
 				</div>
 
-				<form id="dataDeleteForm" method="post" action="<?php echo base_url(); ?>index.php/users/delete_user">
+				<form id="dataDeleteForm" method="post" action="<?php echo base_url(); ?>index.php/data_inventory/delete_data">
 					<div class="table-responsive">
 					  	<table class="table">
 						  	<thead>   
 								<tr>  
 									<th><input type="checkbox" class="main_check" /></th>
-									<th>Username</th>
-									<th>Password</th>
-									<th>Role</th>   
-									<th>Can Add</th>
-									<th>Can Edit</th>
-									<th>Can Delete</th>
-									<th>Edit</th>
+									<th>Last Name</th>
+									<th>First Name</th>
+									<th>Middle Name</th>  
+									<th>Address</th>   
+									<th>View</th>
 								</tr>
 						  	</thead>  
 						  	<tbody>  
-								<!--<tr ng-repeat="user in users">  
-									<td><input type="checkbox" name="user_id[]" value="{{user.id}}" class="sub_check" /></td>
-									<td>{{user.username}}</td>
-									<td>{{user.password}}</td>
-									<td>{{user.role}}</td>  
-									<td>{{user.can_add}}</td>
-									<td>{{user.can_edit}}</td>
-									<td>{{user.can_delete}}</td>
-									<td><a href="#" role="button" ng-click="getUserById(user.id)" data-toggle="modal" data-target="#editModal">Edit</a></td>
-								</tr>-->  
+								<tr ng-repeat="data in datas">  
+									<td><input type="checkbox" name="data_id[]" value="{{data.id}}" class="sub_check" /></td>
+									<td>{{data.last_name}}</td>
+									<td>{{data.first_name}}</td>
+									<td>{{data.middle_name}}</td>  
+									<td>{{data.address}}</td>
+									<td><a href="<?php echo base_url(); ?>index.php/data_inventory/get_data_by_id?id={{data.id}}">View</a></td>
+								</tr>  
 								
 						  	</tbody>
 					  	</table>     

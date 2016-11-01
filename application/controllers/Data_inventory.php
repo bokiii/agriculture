@@ -20,8 +20,7 @@ class Data_Inventory extends CI_Controller {
 	public function add_data() { 
 		
 		$data = array();
-		//$this->useful->debug($this->input->post());  
-
+		
 		$data_personal_details = array ( 
 			"first_name" => trim($this->input->post("first_name")), 
 			"middle_name" => trim($this->input->post("middle_name")),   
@@ -58,11 +57,43 @@ class Data_Inventory extends CI_Controller {
 		}  
 
 		echo json_encode($data);
+	} // end          
+
+	public function get_data() { 
+
+		$get_data = $this->data_inventory_model->get_data();    
+
+		/*for($i = 0; $i < count($get_data); $i++) { 	
+			$get_data_assets_by_data_personal_detail_id = $this->data_inventory_model->get_data_assets_by_data_personal_detail_id($get_data[$i]["id"]);              	
+			$get_data[$i]["data_assets"] = $get_data_assets_by_data_personal_detail_id; 
+		} */ 
+
+		echo json_encode($get_data);
+   	} //   
+
+   	public function get_data_by_id() { 
+
+   		$this->useful->debug($this->input->get());
+
+   	}
 
 
-	}      
+	public function delete_data() { 
+	
+		$data = array();
 
+		$ids = $this->input->post("data_id");  
 
+		$delete_data_by_ids = $this->data_inventory_model->delete_data_by_ids($ids);   
+
+		if($delete_data_by_ids) { 
+			$data["status"] = true;
+		} else { 
+			$data["status"] = false;
+		}   
+
+		echo json_encode($data);
+	}
 
 
 

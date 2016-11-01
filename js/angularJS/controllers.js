@@ -101,7 +101,6 @@ controllers.controller('dataInventory', function($scope, $http, $sce){
 	$scope.asset = [];   
 	$scope.asset_description = [];
 
-
 	$scope.checkFirstData = function() { 
 		var error = [];  
 		switch($scope.first_name) { 
@@ -160,10 +159,18 @@ controllers.controller('dataInventory', function($scope, $http, $sce){
 		}
 	}; // end           
 
-	
+
+	$scope.datas;
+	var getDatasUrl = fullUrl + "/get_data";  
+	$scope.getDatas = function() {    
+		$http.get(getDatasUrl).success(function(data){    
+			$scope.datas = data;  
+		});   
+	};       
+
+	$scope.getDatas();	
 
 
-	
 }); // end    
 
 
