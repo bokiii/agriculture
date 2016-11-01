@@ -237,7 +237,8 @@ var DataInventoryModule = (function() {
 		$("#num_assets").on("click", function(){ 
 			var numOfAssets = $(this).val();      
 			var assetMainContainer = $(".assetContainer").html();   
-			if(numOfAssets > 1) {   
+
+			if(numOfAssets >= 1) {   
 
 				if(currentNumOfAssets < numOfAssets) { 
 					currentNumOfAssets = numOfAssets;   
@@ -246,13 +247,10 @@ var DataInventoryModule = (function() {
 				} else if(currentNumOfAssets > numOfAssets) {     
 					currentNumOfAssets = numOfAssets;   
 					$(".assetContainer:last-child").remove();
-				}
-				
-			} else if(numOfAssets == 1) {   
-				currentNumOfAssets = numOfAssets;  
-				var assetToAppend = '<div class="row assetContainer">' + assetMainContainer + '</div>'; 
-				$("#assetMainContainer").html(assetToAppend);
-			}  
+				}	
+			} 
+
+
 		}); // end    
 
 
@@ -262,10 +260,11 @@ var DataInventoryModule = (function() {
 			$("#secondData").slideUp("slow", function(){ 
 				$("#firstData").slideDown("fast");
 			});     
-			var assetMainContainer = $(".assetContainer").html();     
-			var assetToAppend = '<div class="row assetContainer">' + assetMainContainer + '</div>'; 
-			$("#assetMainContainer").html(assetToAppend);
-			$("#addDataForm").trigger("reset");   
+			   
+			var assetToSet = '<div class="row assetContainer"><div class="col-md-4"><div class="form-group"><label for="asset">Asset</label><input type="text" class="form-control asset" name="asset[]"></div></div><div class="col-md-8"><div class="form-group"><label for="asset_description">Asset Description</label><input type="text" class="form-control asset_description" name="asset_description[]"></div></div></div>';                          
+			$("#assetMainContainer").html(assetToSet);
+			$("#addDataForm").trigger("reset");     
+			currentNumOfAssets = 1;
 		});
 	}; // end     
 
@@ -347,8 +346,7 @@ var DataInventoryModule = (function() {
 
 			angular.element($("#mainSection")).scope().getDatas();    
 		}
-
-	};
+	}; // end
 
 
 	return { 
