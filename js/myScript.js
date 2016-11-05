@@ -359,7 +359,7 @@ DataInventoryModule.navigate();
 DataInventoryModule.addDataFormSubmit();  
 DataInventoryModule.deleteDataFormSubmit();   
 
-var individualDataInventoryModule = (function() { 
+var IndividualDataInventoryModule = (function() { 
 
 	var addDataAssetFormSubmit = function() { 
 		$("#addDataAssetForm").ajaxForm({
@@ -451,9 +451,24 @@ var individualDataInventoryModule = (function() {
 		dataAssetDeleteFormSubmit: 	dataAssetDeleteFormSubmit, 
 		dataAssetUpdateFormSubmit: 	dataAssetUpdateFormSubmit 	
 	}
-
 })() // end 
 
-individualDataInventoryModule.addDataAssetFormSubmit();  
-individualDataInventoryModule.dataAssetDeleteFormSubmit();  
-individualDataInventoryModule.dataAssetUpdateFormSubmit();
+IndividualDataInventoryModule.addDataAssetFormSubmit();  
+IndividualDataInventoryModule.dataAssetDeleteFormSubmit();  
+IndividualDataInventoryModule.dataAssetUpdateFormSubmit();    
+
+var PrintModule = (function() { 
+
+	var printClick = function() { 
+		$("#print").on("click", function(){ 
+			window.print();
+		});
+	};   
+
+	return { 
+		printClick: 	printClick
+	}  
+
+})() // end   
+
+PrintModule.printClick();

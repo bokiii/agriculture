@@ -1,5 +1,13 @@
 <section id="mainSection" ng-controller="individualDataInventory">  
-	<div class="container">  
+	<div class="container for_print">  
+		
+		<div class="row">  
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">   
+				<button type="button" id="print" class="btn btn-common btn-add pull-right">Print</button> 
+			</div>
+		</div>
+
+
 		<div class="row">   
 			
 			<div class="col-md-12">   
@@ -14,7 +22,13 @@
 				</div>     
 			
 				<div class="page-header">
-				  <h1>Assets</h1>
+					<h1>Assets</h1>  
+				  	<form id="searchContainer" class="form-inline">
+						<div class="form-group">
+							<label class="sr-only" for="query">Query</label>
+							<input ng-model="query" type="text" class="form-control" placeholder="Search">
+						</div>         
+					</form>      
 				</div>
 
 				<form id="dataAssetDeleteForm" method="post" action="<?php echo base_url(); ?>index.php/data_inventory/delete_data_asset">
@@ -22,18 +36,18 @@
 					  	<table class="table">
 						  	<thead>   
 								<tr>  
-									<th><input type="checkbox" class="main_check" /></th>
+									<th class="notForPrint"><input type="checkbox" class="main_check" /></th>
 									<th>Asset</th>
 									<th>Asset Description</th>  
-									<th>Edit</th>
+									<th class="notForPrint">Edit</th>
 								</tr>
 						  	</thead>  
 						  	<tbody>  
-								<tr ng-repeat="asset in data.data_assets">  
-									<td><input type="checkbox" name="asset_id[]" value="{{asset.id}}" class="sub_check" /></td>
+								<tr ng-repeat="asset in data.data_assets | filter: query">  
+									<td class="notForPrint"><input type="checkbox" name="asset_id[]" value="{{asset.id}}" class="sub_check" /></td>
 									<td>{{asset.asset}}</td>
 									<td>{{asset.asset_description}}</td>
-									<td><a href="#" role="button" ng-click="getAssetById(asset.id)" data-toggle="modal" data-target="#editModal">Edit</a></td>  
+									<td class="notForPrint"><a href="#" role="button" ng-click="getAssetById(asset.id)" data-toggle="modal" data-target="#editModal">Edit</a></td>  
 								</tr>  
 								
 						  	</tbody>

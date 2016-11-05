@@ -5,8 +5,14 @@
 			<div class="col-md-12">   
 				
 				<div class="page-header">
-				  <h1>Farmers Inventory</h1>
-				</div>
+					<h1>Farmers Inventory</h1>   
+				  	<form class="form-inline">
+						<div class="form-group">
+							<label class="sr-only" for="query">Query</label>
+							<input ng-model="query" type="text" class="form-control" placeholder="Search">
+						</div>         
+					</form>       
+				</div>  
 
 				<form id="dataDeleteForm" method="post" action="<?php echo base_url(); ?>index.php/data_inventory/delete_data">
 					<div class="table-responsive">
@@ -22,7 +28,7 @@
 								</tr>
 						  	</thead>  
 						  	<tbody>  
-								<tr ng-repeat="data in datas">  
+								<tr ng-repeat="data in datas | filter: query">  
 									<td><input type="checkbox" name="data_id[]" value="{{data.id}}" class="sub_check" /></td>
 									<td>{{data.last_name}}</td>
 									<td>{{data.first_name}}</td>

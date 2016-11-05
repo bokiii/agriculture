@@ -196,7 +196,6 @@ controllers.controller('individualDataInventory', function($scope, $http, $sce){
 		});
 
 	};  
-
 }); // end    
 
 
