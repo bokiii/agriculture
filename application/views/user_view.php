@@ -5,7 +5,13 @@
 			<div class="col-md-12">   
 				
 				<div class="page-header">
-				  <h1>Users</h1>
+				  	<h1>Users</h1>  
+				  	<form id="searchContainer" class="form-inline">
+						<div class="form-group">
+							<label class="sr-only" for="query">Query</label>
+							<input ng-model="query" type="text" class="form-control" placeholder="Search">
+						</div>         
+					</form>      
 				</div>
 
 				<form id="userDeleteForm" method="post" action="<?php echo base_url(); ?>index.php/users/delete_user">
@@ -24,7 +30,7 @@
 								</tr>
 						  	</thead>  
 						  	<tbody>  
-								<tr ng-repeat="user in users">  
+								<tr ng-repeat="user in users | filter: query">  
 									<td><input type="checkbox" name="user_id[]" value="{{user.id}}" class="sub_check" /></td>
 									<td>{{user.username}}</td>
 									<td>{{user.password}}</td>
