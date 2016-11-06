@@ -467,8 +467,6 @@ var IndividualDataInventoryModule = (function() {
 
 			angular.element($("#mainSection")).scope().getIndividualData();  
 		}
-
-
 	}; // end 
 
 	return { 

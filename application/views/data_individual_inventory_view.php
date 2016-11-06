@@ -18,9 +18,21 @@
 						<div class="col-md-6"><p><strong>Address:</strong> {{data.address}}</p></div>
 						<div class="col-md-6"><p><strong>Civil Status:</strong> {{data.civil_status}}</p></div>
 						<div class="col-md-6"><p><strong>Gender:</strong> {{data.gender}}</p></div>   
-						<div class="col-md-12 pull-left notForPrint">  
-							<a href="#" role="button" ng-click="getDataPersonalDetailsById(data.id)" data-toggle="modal" data-target="#editPersonalDetailModal">Edit</a>
-						</div>
+						
+						
+						<?php if($this->session->userdata('user_priveleges')) {  ?>  
+							<?php if($this->session->userdata('user_priveleges')['can_edit'] == 1) { ?>	
+								<div class="col-md-12 pull-left notForPrint">  
+									<a href="#" role="button" ng-click="getDataPersonalDetailsById(data.id)" data-toggle="modal" data-target="#editPersonalDetailModal">Edit</a>
+								</div>
+							<?php } ?>  
+
+						<?php } else { ?>      
+							<div class="col-md-12 pull-left notForPrint">  
+								<a href="#" role="button" ng-click="getDataPersonalDetailsById(data.id)" data-toggle="modal" data-target="#editPersonalDetailModal">Edit</a>
+							</div>
+						<?php } ?> 
+						
 					</div>  
 				</div>     
 			
@@ -42,7 +54,15 @@
 									<th class="notForPrint"><input type="checkbox" class="main_check" /></th>
 									<th>Asset</th>
 									<th>Asset Description</th>  
-									<th class="notForPrint">Edit</th>
+									
+									<?php if($this->session->userdata('user_priveleges')) {  ?>  
+										<?php if($this->session->userdata('user_priveleges')['can_edit'] == 1) { ?>	
+											<th class="notForPrint">Edit</th>
+										<?php } ?>  
+									<?php } else { ?>      
+										<th class="notForPrint">Edit</th>
+									<?php } ?> 
+									
 								</tr>
 						  	</thead>  
 						  	<tbody>  
@@ -50,21 +70,37 @@
 									<td class="notForPrint"><input type="checkbox" name="asset_id[]" value="{{asset.id}}" class="sub_check" /></td>
 									<td>{{asset.asset}}</td>
 									<td>{{asset.asset_description}}</td>
-									<td class="notForPrint"><a href="#" role="button" ng-click="getAssetById(asset.id)" data-toggle="modal" data-target="#editModal">Edit</a></td>  
+									
+									<?php if($this->session->userdata('user_priveleges')) {  ?>  
+										<?php if($this->session->userdata('user_priveleges')['can_edit'] == 1) { ?>	
+											<td class="notForPrint"><a href="#" role="button" ng-click="getAssetById(asset.id)" data-toggle="modal" data-target="#editModal">Edit</a></td>  
+										<?php } ?>  
+									<?php } else { ?>      
+										<td class="notForPrint"><a href="#" role="button" ng-click="getAssetById(asset.id)" data-toggle="modal" data-target="#editModal">Edit</a></td>  
+									<?php } ?> 
 								</tr>  
 								
 						  	</tbody>
-					  	</table>     
+					  	</table>      
 
-						<button type="submit" class="btn btn-common btn-delete pull-right">
-							Delete
-						</button>  
+					  	<?php if($this->session->userdata('user_priveleges')) {  ?>  
 
-					  	<button type="button" class="btn btn-common btn-add pull-right" data-toggle="modal" data-target="#addDataModal">
-							Add
-						</button>      
-					
-											
+							<?php if($this->session->userdata('user_priveleges')['can_delete'] == 1) { ?>	
+								<button type="submit" class="btn btn-common btn-delete pull-right">Delete</button>
+
+							<?php } ?>  
+
+							<?php if($this->session->userdata('user_priveleges')['can_add'] == 1) { ?>
+								<button type="button" class="btn btn-common btn-add pull-right" data-toggle="modal" data-target="#addDataModal">Add</button>      
+								
+							<?php } ?>  
+
+						<?php } else { ?>      
+							<button type="submit" class="btn btn-common btn-delete pull-right">Delete</button>
+							<button type="button" class="btn btn-common btn-add pull-right" data-toggle="modal" data-target="#addDataModal">Add</button>      
+						<?php } ?>   
+
+										
 					</div> <!-- end table responsive -->    
 				</form>
 			</div>

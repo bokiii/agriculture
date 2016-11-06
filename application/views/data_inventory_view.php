@@ -40,14 +40,22 @@
 						  	</tbody>
 					  	</table>     
 
-						<button type="submit" class="btn btn-common btn-delete pull-right">
-							Delete
-						</button>  
+						<?php if($this->session->userdata('user_priveleges')) {  ?>  
 
-					  	<button type="button" class="btn btn-common btn-add pull-right" data-toggle="modal" data-target="#addDataModal">
-							Add
-						</button>      
-					
+							<?php if($this->session->userdata('user_priveleges')['can_delete'] == 1) { ?>	
+								<button type="submit" class="btn btn-common btn-delete pull-right">Delete</button>  
+							<?php } ?>  
+
+							<?php if($this->session->userdata('user_priveleges')['can_add'] == 1) { ?>
+								<button type="button" class="btn btn-common btn-add pull-right" data-toggle="modal" data-target="#addDataModal">Add</button>      
+							<?php } ?>  
+
+						<?php } else { ?>      
+
+							<button type="submit" class="btn btn-common btn-delete pull-right">Delete</button>  
+							<button type="button" class="btn btn-common btn-add pull-right" data-toggle="modal" data-target="#addDataModal">Add</button>      
+
+						<?php } ?>  
 											
 					</div> <!-- end table responsive -->    
 				</form>
