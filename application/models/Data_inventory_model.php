@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+ <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Data_inventory_model extends CI_Model {   
 
@@ -94,8 +94,43 @@ class Data_inventory_model extends CI_Model {
 		} else { 
 			return false;
 		}
+	} // end   
+
+	function update_detail_personal_data($data) {  
+
+		$this->db->set("first_name", $data["first_name"]);  
+		$this->db->set("middle_name", $data["middle_name"]);     
+		$this->db->set("last_name", $data["last_name"]);    
+		$this->db->set("address", $data["address"]);  
+		$this->db->set("civil_status", $data["civil_status"]);  
+		$this->db->set("gender", $data["gender"]);
+		$this->db->where("id", $data["id"]);   
+		$query = $this->db->update("data_personal_details");      
+		
+		if($query) { 
+			return true;
+		} else { 
+			return false;
+		}
 
 	} // end 
 
 
-} // end class 
+} // end class  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

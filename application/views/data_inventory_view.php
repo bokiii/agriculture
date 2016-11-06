@@ -130,8 +130,6 @@
 								</div>
 							</div>
 
-
-
 						</div> <!-- end row -->
 				      	
 						<a id="firstNext" class="btn btn-add btn-common topBottomNavigate">Next</a>

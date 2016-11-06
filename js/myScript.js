@@ -25,14 +25,13 @@ var Login = (function() {
 			$("#loginView #role").val(roleValue);  
 			 
 		});
-	};   
+	}; // end    
 
 	var whenModalClose = function() { 
 		$('#modal1').on('hidden.bs.modal', function (e) {
 			$("#loginView .alert-danger").fadeOut("fast");
 		});
-	};
-
+	}; // end 
 
 	var loginSubmit = function() {   
 		$("#loginView").ajaxForm({
@@ -68,7 +67,7 @@ var Login = (function() {
 			}   		      
 
 		}	
-	};  
+	}; // end   
 
 	return { 
 		loginSubmit: 	loginSubmit, 
@@ -443,19 +442,47 @@ var IndividualDataInventoryModule = (function() {
 
 			angular.element($("#mainSection")).scope().getIndividualData();  
 		}
+	}; // end 
 
-	};
+	var dataPersonalDetailUpdateFormSubmit = function() { 
+
+		$("#dataPersonalDetailUpdateForm").ajaxForm({
+			dataType: 'json',
+			forceSync: true,
+			beforeSubmit: loading,
+			success: success_status
+		});    
+
+		function loading() { 
+			return true;
+		}   
+
+		function success_status(data) { 
+			if(data.status) { 
+				$("#editPersonalDetailModal").modal('hide');  
+				alert("Updated");
+			} else { 
+				alert("Failed");
+			}        
+
+			angular.element($("#mainSection")).scope().getIndividualData();  
+		}
+
+
+	}; // end 
 
 	return { 
-		addDataAssetFormSubmit: 	addDataAssetFormSubmit, 
-		dataAssetDeleteFormSubmit: 	dataAssetDeleteFormSubmit, 
-		dataAssetUpdateFormSubmit: 	dataAssetUpdateFormSubmit 	
+		addDataAssetFormSubmit: 				addDataAssetFormSubmit, 
+		dataAssetDeleteFormSubmit: 				dataAssetDeleteFormSubmit, 
+		dataAssetUpdateFormSubmit: 				dataAssetUpdateFormSubmit, 
+		dataPersonalDetailUpdateFormSubmit: 	dataPersonalDetailUpdateFormSubmit 	
 	}
 })() // end 
 
 IndividualDataInventoryModule.addDataAssetFormSubmit();  
 IndividualDataInventoryModule.dataAssetDeleteFormSubmit();  
-IndividualDataInventoryModule.dataAssetUpdateFormSubmit();    
+IndividualDataInventoryModule.dataAssetUpdateFormSubmit();      
+IndividualDataInventoryModule.dataPersonalDetailUpdateFormSubmit();
 
 var PrintModule = (function() { 
 
@@ -468,7 +495,6 @@ var PrintModule = (function() {
 	return { 
 		printClick: 	printClick
 	}  
-
 })() // end   
 
 PrintModule.printClick();

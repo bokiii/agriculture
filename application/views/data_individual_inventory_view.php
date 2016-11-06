@@ -17,7 +17,10 @@
 						<div class="col-md-6"><p><strong>Name:</strong> {{data.last_name}}, {{data.first_name}} {{data.middle_name}}</p></div>
 						<div class="col-md-6"><p><strong>Address:</strong> {{data.address}}</p></div>
 						<div class="col-md-6"><p><strong>Civil Status:</strong> {{data.civil_status}}</p></div>
-						<div class="col-md-6"><p><strong>Gender:</strong> {{data.gender}}</p></div>
+						<div class="col-md-6"><p><strong>Gender:</strong> {{data.gender}}</p></div>   
+						<div class="col-md-12 pull-left notForPrint">  
+							<a href="#" role="button" ng-click="getDataPersonalDetailsById(data.id)" data-toggle="modal" data-target="#editPersonalDetailModal">Edit</a>
+						</div>
 					</div>  
 				</div>     
 			
@@ -157,9 +160,73 @@
 		    	</div>  
 	    	</form>
 		</div>
+	</div> <!-- end edit modal -->    
+
+	<!-- below modal for edit personal detail --> 
+	<div id="editPersonalDetailModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg">
+			<form id="dataPersonalDetailUpdateForm" action="<?php echo base_url(); ?>index.php/data_inventory/update_data_personal_detail" method="post">
+				<div class="modal-content">
+			      	<div class="modal-header">
+			        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        	<h4 class="modal-title" id="myModalLabel">Edit Personal Details</h4>
+			      	</div>
+			      	<div class="modal-body">   
+			      		<p class="bg-danger confirmation_message">Failed</p>        
+				      	
+						<div class="row">    
+							<div class="col-md-4">   
+								<div class="form-group">
+									<label for="first_name">First Name</label>
+									<input type="text" class="form-control" name="first_name" id="first_name" value="{{dataPersonalDetails.first_name}}" required>
+								</div>
+							</div>      
+
+							<div class="col-md-4">   
+								<div class="form-group">
+									<label for="middle_name">Middle Name</label>
+									<input type="text" class="form-control" name="middle_name" id="middle_name" value="{{dataPersonalDetails.middle_name}}" required>
+								</div>
+							</div>      
+
+							<div class="col-md-4">   
+								<div class="form-group">
+									<label for="last_name">Last Name</label>
+									<input type="text" class="form-control" name="last_name" id="last_name" value="{{dataPersonalDetails.last_name}}" required>
+								</div>
+							</div>      
+
+							<div class="col-md-12">  
+								<div class="form-group">
+									<label for="address">Address</label>
+									<input type="text" class="form-control" name="address" id="address" value="{{dataPersonalDetails.address}}" required>
+								</div>
+							</div>      
+
+							<div class="col-md-6">  
+								<div class="form-group" ng-bind-html="civilStatusHtml">
+								</div>
+							</div>  
+
+							<div class="col-md-6">  
+								<div class="form-group" ng-bind-html="genderHtml">
+								</div>
+							</div>   
+
+							<input type="hidden" name="id" value="{{dataPersonalDetails.id}}">
+
+						</div> <!-- end row -->
+			      </div> <!-- end modal body -->  
+
+			      <div class="modal-footer">    
+			      	<button type="reset" class="btn btn-add btn-common">Reset</button>
+			        <button type="submit" class="btn btn-add btn-common">Update</button>
+			      </div>
+		    	</div>  
+	    	</form>
+		</div>
 	</div> <!-- end edit modal -->  
 	
-
 
 </section> <!-- end main section -->      
 

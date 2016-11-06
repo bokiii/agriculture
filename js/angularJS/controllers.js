@@ -170,7 +170,7 @@ controllers.controller('dataInventory', function($scope, $http, $sce){
 	$scope.getDatas();	
 }); // end      
 
-controllers.controller('individualDataInventory', function($scope, $http, $sce){  
+controllers.controller('individualDataInventory', function($scope, $http, $sce, $location){  
 	var protocol = window.location.protocol + "//" + window.location.host;
 	var fullUrl = protocol + window.location.pathname + window.location.search;      
 
@@ -178,11 +178,10 @@ controllers.controller('individualDataInventory', function($scope, $http, $sce){
 	$scope.data;
 	$scope.getIndividualData = function() { 
 		$http.get(getIndividualDataUrl).success(function(data){ 
-			$scope.data = data[0];  
+			$scope.data = data[0];    
 		});  
 	}    
 	$scope.getIndividualData();      
-
 	
 	$scope.data_asset;
 	$scope.getAssetById = function(id) { 
@@ -192,10 +191,57 @@ controllers.controller('individualDataInventory', function($scope, $http, $sce){
 
 		$http.get(getAssetByIdUrl).success(function(data){ 
 			$scope.data_asset = data[0];  
-			console.log($scope.data_asset);
 		});
+	};    
 
-	};  
+	
+	// below get personal detail data for the update   
+	$scope.genderHtml;  
+	$scope.civilStatusHtml;   
+	$scope.dataPersonalDetails;
+	$scope.getDataPersonalDetailsById = function(id) { 
+		
+		var getDataPersonalDetailsByIdUrl = fullUrl.replace("get_data_by_id", "get_data_by_id_no_view");   
+		
+		$http.get(getDataPersonalDetailsByIdUrl).success(function(data){ 
+			
+			  
+			// below for gender html
+			if(data[0].gender == "male") { 
+				data[0].genderHtml = ' <label for="gender">Gender</label><br><label class="radio-inline"><input type="radio" checked name="gender" id="male" value="male">Male</label><label class="radio-inline"><input type="radio" name="gender" id="female" value="female">Female</label>  ';
+			
+			} else if(data[0].gender == "female") { 
+				data[0].genderHtml = ' <label for="gender">Gender</label><br><label class="radio-inline"><input type="radio" name="gender" id="male" value="male">Male</label><label class="radio-inline"><input type="radio" checked name="gender" id="female" value="female">Female</label>  ';
+			
+			} else { 
+				data[0].genderHtml = ' <label for="gender">Gender</label><br><label class="radio-inline"><input type="radio" name="gender" id="male" value="male">Male</label><label class="radio-inline"><input type="radio" name="gender" id="female" value="female">Female</label>  ';
+			}     
+
+			// below for civil status html    
+			if(data[0].civil_status == "single") { 
+				data[0].civilStatusHtml = ' <label for="civil_status">Civil Status</label><br><label class="radio-inline"><input type="radio" name="civil_status" id="single" value="single" checked>Single</label><label class="radio-inline"><input type="radio" name="civil_status" id="married" value="married"> Married</label><label class="radio-inline"><input type="radio" name="civil_status" id="widowed" value="widowed">Widowed</label> ';
+			
+			} else if(data[0].civil_status == "married") { 
+				data[0].civilStatusHtml = ' <label for="civil_status">Civil Status</label><br><label class="radio-inline"><input type="radio" name="civil_status" id="single" value="single">Single</label><label class="radio-inline"><input type="radio" name="civil_status" id="married" value="married" checked> Married</label><label class="radio-inline"><input type="radio" name="civil_status" id="widowed" value="widowed">Widowed</label> ';
+			
+			} else if(data[0].civil_status == "widowed") { 
+				data[0].civilStatusHtml = ' <label for="civil_status">Civil Status</label><br><label class="radio-inline"><input type="radio" name="civil_status" id="single" value="single">Single</label><label class="radio-inline"><input type="radio" name="civil_status" id="married" value="married"> Married</label><label class="radio-inline"><input type="radio" name="civil_status" id="widowed" value="widowed" checked>Widowed</label> ';
+			
+			} else { 
+				data[0].civilStatusHtml = ' <label for="civil_status">Civil Status</label><br><label class="radio-inline"><input type="radio" name="civil_status" id="single" value="single">Single</label><label class="radio-inline"><input type="radio" name="civil_status" id="married" value="married"> Married</label><label class="radio-inline"><input type="radio" name="civil_status" id="widowed" value="widowed">Widowed</label> ';
+			}   
+
+			$scope.dataPersonalDetails = data[0];     
+			$scope.genderHtml = $sce.trustAsHtml(data[0].genderHtml);  
+			$scope.civilStatusHtml = $sce.trustAsHtml(data[0].civilStatusHtml);   
+
+			console.log($scope.dataPersonalDetails);
+
+		});      
+
+	};   
+
+
 }); // end    
 
 

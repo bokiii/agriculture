@@ -60,14 +60,7 @@ class Data_Inventory extends CI_Controller {
 	} // end          
 
 	public function get_data() { 
-
 		$get_data = $this->data_inventory_model->get_data();    
-
-		/*for($i = 0; $i < count($get_data); $i++) { 	
-			$get_data_assets_by_data_personal_detail_id = $this->data_inventory_model->get_data_assets_by_data_personal_detail_id($get_data[$i]["id"]);              	
-			$get_data[$i]["data_assets"] = $get_data_assets_by_data_personal_detail_id; 
-		} */ 
-
 		echo json_encode($get_data);
    	} // end    
 
@@ -82,7 +75,6 @@ class Data_Inventory extends CI_Controller {
    	} // end    
 
    	public function get_data_by_id_angular() { 
-
    		$id = $this->input->get("id");   
 
    		$get_data_by_id = $this->data_inventory_model->get_data_by_id($id);     
@@ -91,6 +83,13 @@ class Data_Inventory extends CI_Controller {
 		$get_data_by_id[0]["data_assets"] = $get_data_assets_by_data_personal_detail_id;
 	
    		echo json_encode($get_data_by_id);   
+   	} // end    
+
+   	public function get_data_by_id_no_view() { 
+   		$id = $this->input->get("id");   
+   		$get_data_by_id = $this->data_inventory_model->get_data_by_id($id);      
+
+   		echo json_encode($get_data_by_id);
    	} // end 
 
 	public function delete_data() { 
@@ -162,6 +161,22 @@ class Data_Inventory extends CI_Controller {
 		} else { 
 			$data["status"] = false;
 		}   
+
+		echo json_encode($data);
+	} // end   
+
+	public function update_data_personal_detail() { 
+
+		$data = array();
+		$update_data = $this->input->post();       
+
+		$update_detail_personal_data = $this->data_inventory_model->update_detail_personal_data($update_data);  		
+
+		if($update_detail_personal_data) { 
+			$data['status'] = true;
+		} else { 
+			$data['status'] = false;
+		}  
 
 		echo json_encode($data);
 

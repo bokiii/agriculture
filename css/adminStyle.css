@@ -31,6 +31,10 @@ table td, table th {
 
 .page-header form { 
 	margin-top: 30px;     
+}  
+
+.page-header p { 
+	text-transform: capitalize;
 }
 
 .btn-common { 

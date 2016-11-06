@@ -10,7 +10,14 @@ class Users extends CI_Controller {
 		$this->useful = new Useful();  
 		if($this->session->userdata('username') == null) { 
 			redirect('home');
-		}     
+		}        
+
+		if($this->session->userdata('user_priveleges')) {  
+			echo "<p>You are not authorized to access the page</p>";  
+			exit;
+		}
+
+
 	} // end 
 
 	public function index() {

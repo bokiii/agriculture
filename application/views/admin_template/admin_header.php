@@ -56,13 +56,19 @@
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav navbar-right main-nav">  
-					<li><a href="<?php echo base_url(); ?>index.php/users">Users</a></li>  
-					<li><a href="<?php echo base_url(); ?>index.php/data_inventory">Data Inventory</a></li>
-					<li><a class="btn btn-red" href="<?php echo base_url(); ?>index.php/process/logout">Logout</a></li>
-					<!--<li><a href="#team">Team</a></li>
-					<li><a href="#pricing">Pricing</a></li>
-					<li><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Login</a></li>-->
+				<ul class="nav navbar-nav navbar-right main-nav">    
+				    
+					<?php if($this->session->userdata('user_priveleges')) {  ?>    
+						<li><a href="<?php echo base_url(); ?>index.php/admin">Home</a></li>   
+						<li><a href="<?php echo base_url(); ?>index.php/data_inventory">Data Inventory</a></li>
+						<li><a class="btn btn-red" href="<?php echo base_url(); ?>index.php/process/logout">Logout</a></li>
+					<?php } else { ?>   
+						<li><a href="<?php echo base_url(); ?>index.php/admin">Home</a></li>   
+						<li><a href="<?php echo base_url(); ?>index.php/users">Users</a></li>  
+						<li><a href="<?php echo base_url(); ?>index.php/data_inventory">Data Inventory</a></li>
+						<li><a class="btn btn-red" href="<?php echo base_url(); ?>index.php/process/logout">Logout</a></li>
+					<?php } ?>   
+				    
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
